@@ -1,4 +1,4 @@
-#include "vector.h"
+#include "Vector.h"
 
 Vector::Vector(const Value* rawArray, const size_t size, float coef ) {
     _size = size;
