@@ -230,7 +230,7 @@ void Vector::reserve(size_t capacity) {
     }
 }
 
- void Vector::shrinkToFit() {
+void Vector::shrinkToFit() {
     if(_capacity > _size) {
         _capacity = _size;
     }
