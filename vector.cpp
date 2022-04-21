@@ -241,3 +241,52 @@ void Vector::reserve(size_t capacity) {
     delete[] _data;
     _data = result;   
 }
+
+Vector::Iterator::Iterator(Value* ptr) {
+    _ptr = ptr;
+}
+
+Value& Vector::Iterator::operator*() {
+    return *_ptr;
+}
+
+const Value& Vector::Iterator::operator*() const {
+    return *_ptr;
+}
+
+Value* Vector::Iterator::operator->(){
+    return _ptr;
+}
+
+const Value* Vector::Iterator::operator->() const {
+    return _ptr;
+}
+    
+Vector::Iterator Vector::Iterator::operator++() {
+    _ptr++;
+    return *this;
+}
+    
+Vector::Iterator  Vector::Iterator::operator++(int) {
+    Vector::Iterator oldValue(*this);
+    ++(*this);
+    return oldValue;
+}
+    
+bool Vector::Iterator::operator==(const Iterator& other) const {
+    return _ptr == other._ptr;
+}
+    
+bool Vector::Iterator::operator!=(const Iterator& other) const {
+    return !(_ptr == other._ptr);
+}
+
+Vector::Iterator Vector::begin() {
+    Vector::Iterator head(_data);
+    return head;
+}
+
+Vector::Iterator   Vector::end() {
+    Vector::Iterator tail(_data + _size);
+    return tail;
+}
