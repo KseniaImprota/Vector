@@ -105,21 +105,36 @@ public:
         Decreases _capacity to _size.
     */
     void shrinkToFit();
+    
+     class Iterator
+    {
+        Value* _ptr;
+    public:
+        explicit Iterator(Value* ptr);
+    
+        Value& operator*();
+    
+        const Value& operator*() const;
+    
+        Value* operator->();
+    
+        const Value* operator->() const;
+    
+        Iterator operator++();
+    
+        Iterator operator++(int);
+    
+        bool operator==(const Iterator& other) const;
+    
+        bool operator!=(const Iterator& other) const;
+    };
+
+    Iterator begin();
+    Iterator end();
+
 private:
     Value* _data = nullptr;
     size_t _size = 0;
     size_t _capacity = 1;
     float _multiplicativeCoef = 2.0f;
 };
-© 2022 GitHub, Inc.
-Terms
-Privacy
-Security
-Status
-Docs
-Contact GitHub
-Pricing
-API
-Training
-Blog
-About
