@@ -209,11 +209,11 @@ const Value& Vector::operator[](size_t idx) const{
 
 long long Vector::find(const Value& value) const{
     for (size_t i = 0; i < _size; i++) {
-		    if (_data[i] == value) {
-			      return i;
-	      }
-	  }
-	  return -1;
+        if (_data[i] == value) {
+	    return i;
+	}
+    }
+    return -1;
 }
 
 void Vector::reserve(size_t capacity) {
