@@ -131,12 +131,13 @@ void Vector::insert(const Value* values, size_t size, size_t pos) {
     }
     delete[] _data;
     _data = result;
-    for(size_t i = 0; i < size; i++){
-        _data[pos + i] = values[i];
-    }
-    for (size_t i = _size - 1; i >= pos; i--){
-        _data[size + i] = _data[i];
-    }
+	
+    for(size_t i = _size - 1; i > pos; i--) {
+		_data[i] = std::move(_data[i - size]);
+	}
+	for(size_t i = 0; i < size; i++) {
+		_data[pos + i] = values[i];
+	}
 }
 
 void Vector::insert(const Vector& vector, size_t pos) {
