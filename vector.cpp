@@ -86,13 +86,13 @@ void Vector::pushFront(const Value& value) {
     }
     _size++;
     if (_size > _capacity) {
-		    _capacity = _capacity * _multiplicativeCoef;
+        _capacity = _capacity * _multiplicativeCoef;
     }
     Value* result = new Value[_capacity];
     result[0] = value;
     for (size_t i = 1; i < _size; i++) {
-			  result[i] = _data[i-1];
-		}
+        result[i] = _data[i-1];
+    }
     delete[] _data;
     _data = result;    
 }
@@ -126,7 +126,7 @@ void Vector::insert(const Value* values, size_t size, size_t pos) {
         _capacity = _capacity * _multiplicativeCoef;
     }
     Value* result = new Value[_capacity];
-    for (size_t i = 0; i < _size; i++) {
+    for (size_t i = 0; i < _size - size; i++) {
         result[i] = _data[i];
     }
     delete[] _data;
