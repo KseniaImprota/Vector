@@ -108,7 +108,7 @@ void Vector::insert(const Value& value, size_t pos) {
     }
     _size++;
     if (_size > _capacity) {
-        size_t _capacity = _capacity * _multiplicativeCoef;
+        _capacity = _capacity * _multiplicativeCoef;
     }
     Value* result = new Value[_capacity];
     for (size_t i = 0; i < pos; ++i) {
@@ -154,7 +154,7 @@ void Vector::popFront(){
         _data = new Value[_capacity];
     }
     if (_size > _capacity) {
-        size_t _capacity = _capacity * _multiplicativeCoef;
+        _capacity = _capacity * _multiplicativeCoef;
     }
     Value* result = new Value[_capacity];
     for (size_t i = 0; i < _size - 1; ++i) {
