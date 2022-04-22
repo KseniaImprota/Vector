@@ -230,7 +230,7 @@ void Vector::shrinkToFit() {
     }
     Value* result = new Value[_capacity];
     for (size_t i = 0; i < _size; i++) { 
-        result[i] = result[i];
+        result[i] = _data[i];
     }
     delete[] _data;
     _data = result;   
