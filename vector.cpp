@@ -67,6 +67,7 @@ void Vector::pushBack(const Value& value) {
         _data = new Value[_capacity];
     }
     _size++;
+    _capacity++;
     if (_size > _capacity) {
         _capacity = _capacity * _multiplicativeCoef;
     }
@@ -85,6 +86,7 @@ void Vector::pushFront(const Value& value) {
         _data = new Value[_capacity];
     }
     _size++;
+    _capacity++;
     if (_size > _capacity) {
         _capacity = _capacity * _multiplicativeCoef;
     }
@@ -102,6 +104,7 @@ void Vector::insert(const Value& value, size_t pos) {
         _data = new Value[_capacity];
     }
     _size++;
+    _capacity++;
     if (_size > _capacity) {
         _capacity = _capacity * _multiplicativeCoef;
     }
@@ -122,6 +125,7 @@ void Vector::insert(const Value* values, size_t size, size_t pos) {
         _data = new Value[_capacity];
     }
     _size += size;
+    _capacity ++;
     if (_size > _capacity) {
         _capacity = _capacity * _multiplicativeCoef;
     }
@@ -143,6 +147,7 @@ void Vector::insert(const Vector& vector, size_t pos) {
 
 void Vector::popBack(){
     _size = _size - 1;
+    _capacity = _capacity - 1;
 }
 
 void Vector::popFront(){
@@ -159,6 +164,7 @@ void Vector::popFront(){
     delete[] _data;
     _data = result;
     _size--;
+    _capacity--;
 }
 
 void Vector::erase(size_t pos, size_t count){
@@ -182,6 +188,7 @@ void Vector::eraseBetween(size_t beginPos, size_t endPos){
    			    _data[j - 1] = _data[j];
     	  }
     _size--;
+    _capacity--;
 	  }
 }
 
