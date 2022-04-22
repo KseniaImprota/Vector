@@ -14,7 +14,7 @@ Vector::Vector(const Vector& other) {
     size_t _size = other._size;
     size_t _capacity = other._capacity;
     _data = new Value[other._capacity];
-	  float  _multiplicativeCoef = other._multiplicativeCoef;
+    float  _multiplicativeCoef = other._multiplicativeCoef;
     for(size_t i = 0; i < other._size; i++) {
         _data[i] = other._data[i];
     }
@@ -23,13 +23,12 @@ Vector::Vector(const Vector& other) {
 Vector& Vector::operator=(const Vector& other) {
     if (this != &other) {
         delete[] _data;
-        Value* _data = other._data;
+        _data = other._data;
         _capacity = other._capacity;
         _multiplicativeCoef = other._multiplicativeCoef;
         for(size_t i = 0; i < other._size; i++){
             _data[i] = other._data[i];
-        }
-        return *this;
+	}
     }
     else {
         return *this;
@@ -37,7 +36,7 @@ Vector& Vector::operator=(const Vector& other) {
 }
 
 Vector::Vector(Vector&& other) noexcept {
-    Value* _data = other._data;
+    _data = other._data;
     _size = other._size;
     _capacity = other._capacity;
     _multiplicativeCoef = other._multiplicativeCoef;
@@ -48,7 +47,7 @@ Vector::Vector(Vector&& other) noexcept {
 
 Vector& Vector::operator=(Vector&& other) noexcept {
     if (this != &other) {
-    Value* _data = other._data;
+    _data = other._data;
     _size = other._size;
     _capacity = other._capacity;
     _multiplicativeCoef = other._multiplicativeCoef;
@@ -56,7 +55,6 @@ Vector& Vector::operator=(Vector&& other) noexcept {
             _data[i] = other._data[i];
         }
     other._data = nullptr;
-    return *this;
     }
     else {
         return *this;
