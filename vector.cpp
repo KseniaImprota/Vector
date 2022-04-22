@@ -38,21 +38,22 @@ Vector::Vector(Vector&& other) noexcept {
     _size = other._size;
     _capacity = other._capacity;
     _multiplicativeCoef = other._multiplicativeCoef;
-    for(size_t i = 0; i < other._size; i++) {
-        _data[i] = other._data[i];
-    }
+    other._data = nullptr;
+    other._size = 0;
+    other._capacity = 0;
+    other._multiplicativeCoef = 0;
 }
 
 Vector& Vector::operator=(Vector&& other) noexcept {
     if (this != &other) {
-    _data = other._data;
-    _size = other._size;
-    _capacity = other._capacity;
-    _multiplicativeCoef = other._multiplicativeCoef;
-        for(size_t i = 0; i < other._size; i++) {
-            _data[i] = other._data[i];
-        }
-    other._data = nullptr;
+        _data = other._data;
+        _size = other._size;
+        _capacity = other._capacity;
+        _multiplicativeCoef = other._multiplicativeCoef;
+        other._size = 0;
+	other._capacity = 0;
+        other._multiplicativeCoef = 0;
+        other._data = nullptr;
     }
     return *this;
 }
