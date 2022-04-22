@@ -30,9 +30,7 @@ Vector& Vector::operator=(const Vector& other) {
             _data[i] = other._data[i];
 	}
     }
-    else {
-        return *this;
-    }
+    return *this;
 }
 
 Vector::Vector(Vector&& other) noexcept {
@@ -56,9 +54,7 @@ Vector& Vector::operator=(Vector&& other) noexcept {
         }
     other._data = nullptr;
     }
-    else {
-        return *this;
-    }
+    return *this;
 }
 
 Vector::~Vector() {
