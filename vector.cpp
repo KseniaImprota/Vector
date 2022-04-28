@@ -28,6 +28,7 @@ Vector& Vector::operator=(const Vector& other) {
     if (this != &other) {
         delete[] _data;
         _data = other._data;
+	_size = other._size;
         _capacity = other._capacity;
         _multiplicativeCoef = other._multiplicativeCoef;
         for(size_t i = 0; i < other._size; i++){
@@ -95,11 +96,11 @@ void Vector::pushFront(const Value& value) {
 }
 
 void Vector::insert(const Value& value, size_t pos) {
-    if (_data == nullptr) {
+    if (_data == nullptr) || (_capacity == 0)) {
+	_capacity = _multiplicativeCoef;
         _data = new Value[_capacity];
     }
     _size++;
-    _capacity++;
     if (_size > _capacity) {
         _capacity = _capacity * _multiplicativeCoef;
     }
@@ -116,7 +117,7 @@ void Vector::insert(const Value& value, size_t pos) {
 }
 
 void Vector::insert(const Value* values, size_t size, size_t pos) {
-    if (_data == nullptr) {
+    if (_data == nullptr) || (_capacity == 0)) {
 	_capacity = _multiplicativeCoef;
         _data = new Value[_capacity];
     }
