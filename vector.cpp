@@ -4,18 +4,18 @@ Vector::Vector(const Value* rawArray, const size_t size, float coef ) {
     _size = size;
     _capacity = size;
     _multiplicativeCoef = coef;
-    _data = new Value[_size];
-    for(size_t i = 0; i < _size; i++){
+    _data = new Value[_capacity];
+    for(size_t i = 0; i < size; i++){
         _data[i] = rawArray[i];
     }
 
 }
 
 Vector::Vector(const Vector& other) { 
-    size_t _size = other._size;
-    size_t _capacity = other._capacity;
-    _data = new Value[other._capacity];
-    float  _multiplicativeCoef = other._multiplicativeCoef;
+    _size = other._size;
+    _capacity = other._capacity;
+    _data = new Value[_capacity];
+    _multiplicativeCoef = other._multiplicativeCoef;
     for(size_t i = 0; i < other._size; i++) {
         _data[i] = other._data[i];
     }
