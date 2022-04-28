@@ -96,7 +96,7 @@ void Vector::pushFront(const Value& value) {
 }
 
 void Vector::insert(const Value& value, size_t pos) {
-    if (_data == nullptr) || (_capacity == 0)) {
+    if ((_data == nullptr) || (_capacity == 0)) {
 	_capacity = _multiplicativeCoef;
         _data = new Value[_capacity];
     }
@@ -117,7 +117,7 @@ void Vector::insert(const Value& value, size_t pos) {
 }
 
 void Vector::insert(const Value* values, size_t size, size_t pos) {
-    if (_data == nullptr) || (_capacity == 0)) {
+    if ((_data == nullptr) || (_capacity == 0)) {
 	_capacity = _multiplicativeCoef;
         _data = new Value[_capacity];
     }
@@ -151,7 +151,7 @@ void Vector::popBack(){
 }
 
 void Vector::popFront(){
-    if (_data == nullptr){
+    if ((_data == nullptr) || (_capacity == 0)) {
 	_capacity = _multiplicativeCoef;
         _data = new Value[_capacity];
     }
@@ -171,7 +171,7 @@ void Vector::erase(size_t pos, size_t count){
     if (_size == 0) {
         throw out_of_range("_size = 0");
     }
-    if (_data == nullptr) {
+    if ((_data == nullptr) || (_capacity == 0)) {
 	_capacity = _multiplicativeCoef;
         _data = new Value[_capacity];
     }
@@ -181,10 +181,12 @@ void Vector::erase(size_t pos, size_t count){
     for (size_t i = pos + count; i < _size; i++) {
         _data[i - count] = _data[i];
     }
+    _size -= count;
 }
 
 void Vector::eraseBetween(size_t beginPos, size_t endPos){
-    if (_data == nullptr) {
+    if ((_data == nullptr) || (_capacity == 0)) {
+	_capacity = _multiplicativeCoef;
         _data = new Value[_capacity];
     }
     for (size_t i = 0; i < (endPos - beginPos); i++) {
@@ -225,14 +227,14 @@ long long Vector::find(const Value& value) const{
 }
 
 void Vector::reserve(size_t capacity) {
-    if (capacity > _capacity) {
+    if (capacity > _size) {
         Value* result = new Value[capacity];
+	_capacity = capacity;
         for (size_t i = 0; i < _size; i++) {
             result[i] =  _data[i];
         }
         delete[] _data;
         _data = result;
-        _capacity = capacity;
     }
 }
 
