@@ -6,12 +6,11 @@ using namespace std;
 Vector::Vector(const Value* rawArray, const size_t size, float coef ) {
     _size = size;
     _capacity = size;
-    _multiplicativeCoef = coef;
     _data = new Value[_capacity];
     for(size_t i = 0; i < size; i++){
         _data[i] = rawArray[i];
     }
-
+    _multiplicativeCoef = coef;
 }
 
 Vector::Vector(const Vector& other) { 
@@ -115,7 +114,7 @@ void Vector::insert(const Value& value, size_t pos) {
     delete[] _data;
     _data = result;
 }
-
+/*
 void Vector::insert(const Value* values, size_t size, size_t pos) {
     if ((_data == nullptr) || (_capacity == 0)) {
 	_capacity = _multiplicativeCoef;
@@ -135,6 +134,30 @@ void Vector::insert(const Value* values, size_t size, size_t pos) {
     for (size_t i = 0; i < size; ++i) {
         insert(values[i], pos + i);
     }
+}
+*/
+
+void Vector::insert(const Value* values, size_t size, size_t pos) {
+    if ((_data == nullptr) || (_capacity == 0)) {
+        _capacity = _multiplicativeCoef;
+        _data = new Value[_capacity];
+    }
+    _size += size;
+    while (_capacity < _size) {
+        _capacity = _capacity * _multiplicativeCoef;
+    }
+    Value* tmp = new Value[_capacity];
+    for (size_t i = 0; i < pos; i++) {
+        tmp[i] = _data[i];
+    }
+    for (size_t j = 0; j < size; j++) {
+        tmp[pos + j] = values[j];
+    }
+    for (size_t g = pos + size; g < _size; g++) {
+        tmp[g] = _data[g - size];
+    }
+    delete[] _data;
+    _data = tmp;
 }
 
 void Vector::insert(const Vector& vector, size_t pos) {
