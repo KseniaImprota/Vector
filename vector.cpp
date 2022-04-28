@@ -64,7 +64,7 @@ Vector::~Vector() {
 }
 
 void Vector::pushBack(const Value& value) {
-    if (_data == nullptr) {
+    if ((_data == nullptr) || (_capacity == 0)) {
         _data = new Value[_capacity];
 	_capacity = _multiplicativeCoef;
     }
