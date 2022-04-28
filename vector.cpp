@@ -65,8 +65,8 @@ Vector::~Vector() {
 
 void Vector::pushBack(const Value& value) {
     if ((_data == nullptr) || (_capacity == 0)) {
-        _data = new Value[_capacity];
 	_capacity = _multiplicativeCoef;
+        _data = new Value[_capacity];
     }
     _size++;
     if (_size > _capacity) {
