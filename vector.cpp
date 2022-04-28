@@ -114,7 +114,7 @@ void Vector::insert(const Value& value, size_t pos) {
     delete[] _data;
     _data = result;
 }
-/*
+
 void Vector::insert(const Value* values, size_t size, size_t pos) {
     if ((_data == nullptr) || (_capacity == 0)) {
 	_capacity = _multiplicativeCoef;
@@ -125,39 +125,17 @@ void Vector::insert(const Value* values, size_t size, size_t pos) {
         _capacity = _capacity * _multiplicativeCoef;
     }
     Value* result = new Value[_capacity];
-    for (size_t i = 0; i < _size - size; i++) {
+    for (size_t i = 0; i < pos; i++) {
         result[i] = _data[i];
+    }
+    for (size_t j = 0; j < size; j++) {
+        result[pos + j] = values[j];
+    }
+    for (size_t k = pos + size; k < _size; k++) {
+        result[k] = _data[k - size];
     }
     delete[] _data;
     _data = result;
-	
-    for (size_t i = 0; i < size; ++i) {
-        insert(values[i], pos + i);
-    }
-}
-*/
-
-void Vector::insert(const Value* values, size_t size, size_t pos) {
-    if ((_data == nullptr) || (_capacity == 0)) {
-        _capacity = _multiplicativeCoef;
-        _data = new Value[_capacity];
-    }
-    _size += size;
-    while (_capacity < _size) {
-        _capacity = _capacity * _multiplicativeCoef;
-    }
-    Value* tmp = new Value[_capacity];
-    for (size_t i = 0; i < pos; i++) {
-        tmp[i] = _data[i];
-    }
-    for (size_t j = 0; j < size; j++) {
-        tmp[pos + j] = values[j];
-    }
-    for (size_t g = pos + size; g < _size; g++) {
-        tmp[g] = _data[g - size];
-    }
-    delete[] _data;
-    _data = tmp;
 }
 
 void Vector::insert(const Vector& vector, size_t pos) {
@@ -191,10 +169,10 @@ void Vector::popFront(){
     _data = result;
     _size--;
 }
-
+/*
 void Vector::erase(size_t pos, size_t count){
-    if (_size == 0) {
-        throw out_of_range("_size = 0");
+    if (pos >= _size) {
+        throw out_of_range("pos >= _size");
     }
     if ((_data == nullptr) || (_capacity == 0)) {
 	_capacity = _multiplicativeCoef;
@@ -207,6 +185,23 @@ void Vector::erase(size_t pos, size_t count){
         _data[i - count] = _data[i];
     }
     _size -= count;
+}
+*/
+void Vector::erase(size_t pos, size_t count){
+if (_size == 0) {
+        throw out_of_range("_size = 0");
+    }
+    size_t size = _size;
+    if (pos + count >= size) {
+        _size -= _size - pos;
+    }
+    else {
+        for (size_t i = pos; i < size - count; ++i) {
+            _data[i] = _data[i + count];
+        }
+        _size -= count;
+    }
+}
 }
 
 void Vector::eraseBetween(size_t beginPos, size_t endPos){
