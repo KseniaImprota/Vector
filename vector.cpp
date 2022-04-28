@@ -114,10 +114,10 @@ void Vector::insert(const Value& value, size_t pos) {
 
 void Vector::insert(const Value* values, size_t size, size_t pos) {
     if (_data == nullptr) {
+	_capacity = _multiplicativeCoef;
         _data = new Value[_capacity];
     }
     _size += size;
-    _capacity ++;
     if (_size > _capacity) {
         _capacity = _capacity * _multiplicativeCoef;
     }
@@ -144,6 +144,7 @@ void Vector::popBack(){
 
 void Vector::popFront(){
     if (_data == nullptr){
+	_capacity = _multiplicativeCoef;
         _data = new Value[_capacity];
     }
     if (_size > _capacity) {
@@ -156,11 +157,11 @@ void Vector::popFront(){
     delete[] _data;
     _data = result;
     _size--;
-    _capacity--;
 }
 
 void Vector::erase(size_t pos, size_t count){
     if (_data == nullptr) {
+	_capacity = _multiplicativeCoef;
         _data = new Value[_capacity];
     }
     if(pos + count >= _size) {
@@ -180,7 +181,6 @@ void Vector::eraseBetween(size_t beginPos, size_t endPos){
    			    _data[j - 1] = _data[j];
     	  }
     _size--;
-    _capacity--;
 	  }
 }
 
