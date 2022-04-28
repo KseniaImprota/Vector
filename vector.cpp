@@ -150,33 +150,14 @@ void Vector::popBack(){
 	    throw out_of_range("size = 0");
     }
 }
-/*
-void Vector::popFront(){
-    if ((_data == nullptr) || (_capacity == 0)) {
-	_capacity = _multiplicativeCoef;
-        _data = new Value[_capacity];
-    }
-    if (_size > _capacity) {
-        _capacity = _capacity * _multiplicativeCoef;
-    }
-    Value* result = new Value[_capacity];
-    if (_data != nullptr) {
-        for (size_t i = 0; i < _size - 1; ++i) {
-            result[i] = _data[i + 1];
-        }
-        delete[] _data;
-    }
-    _data = result;
-    _size--;
-}
-*/
+
 void Vector::popFront() {
     erase(0, 1);
 }
-/*
+
 void Vector::erase(size_t pos, size_t count){
-    if (pos >= _size) {
-        throw out_of_range("pos >= _size");
+    if (_size == 0) {
+        throw out_of_range("_size = 0");
     }
     if ((_data == nullptr) || (_capacity == 0)) {
 	_capacity = _multiplicativeCoef;
@@ -189,22 +170,6 @@ void Vector::erase(size_t pos, size_t count){
         _data[i - count] = _data[i];
     }
     _size -= count;
-}
-*/
-void Vector::erase(size_t pos, size_t count){
-if (_size == 0) {
-        throw out_of_range("_size = 0");
-    }
-    size_t size = _size;
-    if (pos + count >= size) {
-        _size -= _size - pos;
-    }
-    else {
-        for (size_t i = pos; i < size - count; ++i) {
-            _data[i] = _data[i + count];
-        }
-        _size -= count;
-    }
 }
 
 void Vector::eraseBetween(size_t beginPos, size_t endPos){
