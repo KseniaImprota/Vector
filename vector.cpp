@@ -138,8 +138,12 @@ void Vector::insert(const Vector& vector, size_t pos) {
 }
 
 void Vector::popBack(){
-    _size = _size - 1;
-    _capacity = _capacity - 1;
+    if( _size > 0) {
+        _size = _size - 1;
+    }
+    else {
+	    throw _of_range("size = 0");
+    }
 }
 
 void Vector::popFront(){
@@ -160,6 +164,9 @@ void Vector::popFront(){
 }
 
 void Vector::erase(size_t pos, size_t count){
+    if (_size == 0) {
+        throw out_of_range("_size = 0");
+    }
     if (_data == nullptr) {
 	_capacity = _multiplicativeCoef;
         _data = new Value[_capacity];
@@ -193,7 +200,7 @@ size_t Vector::capacity() const{
 }
 
  double Vector::loadFactor() const{
-     return (double)_size/_capacity;
+     return (double)_size / (double)_capacity;
  }
 
 Value& Vector::operator[](size_t idx) {
