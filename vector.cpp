@@ -1,5 +1,7 @@
 #include "Vector.h"
 
+using namespace std;
+
 Vector::Vector(const Value* rawArray, const size_t size, float coef ) {
     _size = size;
     _capacity = size;
