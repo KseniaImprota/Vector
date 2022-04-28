@@ -1,4 +1,5 @@
 #include "Vector.h"
+#include <iostream>
 
 using namespace std;
 
@@ -144,7 +145,7 @@ void Vector::popBack(){
         _size = _size - 1;
     }
     else {
-	    throw _of_range("size = 0");
+	    throw out_of_range("size = 0");
     }
 }
 
