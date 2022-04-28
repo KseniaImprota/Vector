@@ -66,18 +66,13 @@ Vector::~Vector() {
 void Vector::pushBack(const Value& value) {
     if (_data == nullptr) {
         _data = new Value[_capacity];
+	_capacity = _multiplicativeCoef;
     }
     _size++;
     _capacity++;
     if (_size > _capacity) {
         _capacity = _capacity * _multiplicativeCoef;
     }
-    Value* result = new Value[_capacity];
-    for (size_t i = 0; i < _size; i++) {
-        result[i] =  _data[i];
-    }
-    delete[] _data;
-    _data = result;
     _data[_size - 1] = value;
 }
 	
