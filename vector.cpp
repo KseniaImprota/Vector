@@ -159,10 +159,12 @@ void Vector::popFront(){
         _capacity = _capacity * _multiplicativeCoef;
     }
     Value* result = new Value[_capacity];
-    for (size_t i = 0; i < _size - 1; ++i) {
-        result[i] = _data[i + 1];
+    if (_data != nullptr) {
+        for (size_t i = 0; i < _size - 1; ++i) {
+            result[i] = _data[i + 1];
+        }
+        delete[] _data;
     }
-    delete[] _data;
     _data = result;
     _size--;
 }
@@ -227,14 +229,16 @@ long long Vector::find(const Value& value) const{
 }
 
 void Vector::reserve(size_t capacity) {
-    if (capacity > _size) {
+    if (capacity > _capacity) {
         Value* result = new Value[capacity];
-	_capacity = capacity;
-        for (size_t i = 0; i < _size; i++) {
-            result[i] =  _data[i];
-        }
-        delete[] _data;
+	if (_data != nullptr) {
+            for (size_t i = 0; i < _size; i++) {
+                result[i] =  _data[i];
+            }
+            delete[] _data;
+	}
         _data = result;
+	_capacity = capacity;
     }
 }
 
