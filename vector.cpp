@@ -69,7 +69,6 @@ void Vector::pushBack(const Value& value) {
 	_capacity = _multiplicativeCoef;
     }
     _size++;
-    _capacity++;
     if (_size > _capacity) {
         _capacity = _capacity * _multiplicativeCoef;
     }
