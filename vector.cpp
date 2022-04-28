@@ -2,6 +2,7 @@
 
 Vector::Vector(const Value* rawArray, const size_t size, float coef ) {
     _size = size;
+    _capacity = size;
     _multiplicativeCoef = coef;
     _data = new Value[_size];
     for(size_t i = 0; i < _size; i++){
