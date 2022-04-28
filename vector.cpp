@@ -77,21 +77,18 @@ void Vector::pushBack(const Value& value) {
 	
 
 void Vector::pushFront(const Value& value) {
-    if (_data == nullptr) {
+    if ((_data == nullptr) || (_capacity == 0)) {
+	_capacity = _multiplicativeCoef;
         _data = new Value[_capacity];
     }
     _size++;
-    _capacity++;
     if (_size > _capacity) {
         _capacity = _capacity * _multiplicativeCoef;
     }
-    Value* result = new Value[_capacity];
-    result[0] = value;
+    _data[0] = value;
     for (size_t i = 1; i < _size; i++) {
-        result[i] = _data[i-1];
+        _data[i] = _data[i+1];
     }
-    delete[] _data;
-    _data = result;    
 }
 
 void Vector::insert(const Value& value, size_t pos) {
