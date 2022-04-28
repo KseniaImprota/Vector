@@ -150,7 +150,7 @@ void Vector::popBack(){
 	    throw out_of_range("size = 0");
     }
 }
-
+/*
 void Vector::popFront(){
     if ((_data == nullptr) || (_capacity == 0)) {
 	_capacity = _multiplicativeCoef;
@@ -168,6 +168,10 @@ void Vector::popFront(){
     }
     _data = result;
     _size--;
+}
+*/
+void Vector::popFront() {
+    erase(0, 1);
 }
 /*
 void Vector::erase(size_t pos, size_t count){
@@ -201,7 +205,6 @@ if (_size == 0) {
         }
         _size -= count;
     }
-}
 }
 
 void Vector::eraseBetween(size_t beginPos, size_t endPos){
